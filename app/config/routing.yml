@@ -1,0 +1,38 @@
+portalen_invoice:
+    resource: "@PortalenInvoiceBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+portalen_customer:
+    resource: "@PortalenCustomerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+admin:
+    resource: '@BackendBundle/Controller/'
+    type: annotation
+
+company:
+    resource: '@CompanyBundle/Controller/'
+    type: annotation
+
+api:
+    resource: '@ApiBundle/Controller/'
+    type: annotation
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+
+
+
+
+
+
+
+

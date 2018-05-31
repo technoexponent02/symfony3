@@ -1,0 +1,76 @@
+{% extends 'backend/layouts/base.html.twig' %}
+
+{% block title %}Company Settings{% endblock %}
+
+{% block stylesheets %}
+    <style type="text/css">
+    label.required:after {
+        content: ' *';
+        color:#ff5d48;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title">Company Settings</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="card-box">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 col-md-12">
+                    <h4 class="header-title m-t-0">Settings Details</h4>
+
+                    {# {% for flash_message in app.session.flashBag.get('success') %}
+                        <div class="alert alert-success">
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+                    
+                    {% if not form.vars.valid %}
+                        <div class="alert alert-danger" role="alert">{{ form_errors(form.email) }}{{ form_errors(form.username) }}{{ form_errors(form.plainPassword) }}</div>
+                    {% endif %} #}
+                    <div class="p-20">
+                        <div class="form-group row">
+                            <label class="col-sm-4 form-control-label">Comapany Name </label>
+                            <div class="col-sm-7">
+                                {{ companyDetails.companyName }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 form-control-label">Comapany Email </label>
+                            <div class="col-sm-7">
+                                {{ companyDetails.companyEmail }}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 form-control-label">Active Modules </label>
+                            <div class="col-sm-7">
+                                {% set module_html='' %}
+                                {% if company.modules|length > 0 %}
+                                    {% for mdule in company.modules %}
+                                        {% set module_html = module_html ~ mdule.moduleName ~ ', ' %}
+                                    {% endfor %}
+                                {% endif %}
+                                {{ module_html|trim(', ', 'right') }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block customscripts %}
+    <script type="text/javascript" src="{{ asset('backend_assets/plugins/parsleyjs/parsley.min.js') }}"></script>
+    <script type="text/javascript">
+            $(document).ready(function() {
+                $('form').parsley();
+            });
+        </script>
+{% endblock %}

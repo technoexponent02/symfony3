@@ -1,0 +1,39 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host: 127.0.0.1
+    database_port: ~
+    database_name: symfony
+    database_user: root
+    database_password: ~
+    # You should uncomment this if you want to use pdo_sqlite
+    #database_path: "%kernel.root_dir%/data.db3"
+
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: symfony_portalen
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_port: 587
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+
+    mandrill_api_key: oM60N6ddNM6KnoO_2aIXmg
+    mandrill_default_sender: test@technoexponent.com
+    mandrill_default_sender_name: test
+    mandrill_default_subaccount: Project
+    mandrill_proxy_host: smtp.mandrillapp.com
+    mandrill_proxy_port: 587
+    mandrill_proxy_user: Freppa AB
+    mandrill_proxy_password: oM60N6ddNM6KnoO_2aIXmg
+
+    session_max_idle_time: 1800
+
+
+    # A secret key that's used to generate certain security-related tokens
+    secret: projectportalen
+
+    invoice_directory: '%kernel.root_dir%/../web/uploads/invoice'

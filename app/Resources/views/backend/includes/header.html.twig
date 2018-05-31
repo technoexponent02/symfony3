@@ -1,0 +1,372 @@
+<header id="topnav">
+    <div class="topbar-main">
+        <div class="container">
+
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <a href="{{ path('admin_dashboard') }}" class="logo">
+                    <i class="zmdi zmdi-group-work icon-c-logo"></i>
+                    <span>Portalen</span>
+                </a>
+            </div>
+            <!-- End Logo container-->
+
+
+            <div class="menu-extras">
+
+                <ul class="nav navbar-nav pull-right">
+
+                    <li class="nav-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </li>
+
+                    <li class="nav-item hidden-sm-down">
+                        <form role="search" class="navbar-left app-search pull-left hidden-xs">
+                             <input type="text" placeholder="Search..." class="form-control">
+                             <a href="#"><i class="fa fa-search"></i></a>
+                        </form>
+                    </li>
+
+                    <li class="nav-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            <i class="zmdi zmdi-notifications-none noti-icon"></i>
+                            <span class="noti-icon-badge"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-lg" aria-labelledby="Preview">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5><small><span class="label label-danger pull-xs-right">7</span>Notification</small></h5>
+                            </div>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <div class="notify-icon bg-success"><i class="icon-bubble"></i></div>
+                                <p class="notify-details">Robert S. Taylor commented on Admin<small class="text-muted">1min ago</small></p>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <div class="notify-icon bg-info"><i class="icon-user"></i></div>
+                                <p class="notify-details">New user registered.<small class="text-muted">1min ago</small></p>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <div class="notify-icon bg-danger"><i class="icon-like"></i></div>
+                                <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">1min ago</small></p>
+                            </a>
+
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item notify-all">
+                                View All
+                            </a>
+
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            <i class="zmdi zmdi-email noti-icon"></i>
+                            <span class="noti-icon-badge"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg" aria-labelledby="Preview">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title bg-success">
+                                <h5><small><span class="label label-danger pull-xs-right">7</span>Messages</small></h5>
+                            </div>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <div class="notify-icon bg-faded">
+                                    <img src="{{ asset('backend_assets/images/users/avatar-2.jpg') }}" alt="img" class="img-circle img-fluid">
+                                </div>
+                                <p class="notify-details">
+                                    <b>Robert Taylor</b>
+                                    <span>New tasks needs to be done</span>
+                                    <small class="text-muted">1min ago</small>
+                                </p>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <div class="notify-icon bg-faded">
+                                    <img src="{{ asset('backend_assets/images/users/avatar-3.jpg') }}" alt="img" class="img-circle img-fluid">
+                                </div>
+                                <p class="notify-details">
+                                    <b>Carlos Crouch</b>
+                                    <span>New tasks needs to be done</span>
+                                    <small class="text-muted">1min ago</small>
+                                </p>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <div class="notify-icon bg-faded">
+                                    <img src="{{ asset('backend_assets/images/users/avatar-4.jpg') }}" alt="img" class="img-circle img-fluid">
+                                </div>
+                                <p class="notify-details">
+                                    <b>Robert Taylor</b>
+                                    <span>New tasks needs to be done</span>
+                                    <small class="text-muted">1min ago</small>
+                                </p>
+                            </a>
+
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item notify-all">
+                                View All
+                            </a>
+
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown notification-list">
+                        <a class="nav-link waves-effect waves-light right-bar-toggle" href="javascript:void(0);">
+                            <i class="zmdi zmdi-format-subject noti-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            <img src="{{ asset('backend_assets/images/users/avatar-1.jpg') }}" alt="user" class="img-circle">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow profile-dropdown " aria-labelledby="Preview">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                {% set user_display_name=app.user.username %}
+                                {% if app.user.userType == 1 and app.user.switchUser != NULL and app.user.loginCompany != NULL %}
+                                    {% set user_display_name=app.user.switchUser.username %}
+                                {% endif %}
+                                <h5 class="text-overflow"><small>Welcome {{ user_display_name }}</small> </h5>
+                            </div>
+
+                            <!-- item-->
+                            <a href="{{ path('my_profile') }}" class="dropdown-item notify-item">
+                                <i class="zmdi zmdi-account-circle"></i> <span>Profile</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="zmdi zmdi-settings"></i> <span>Settings</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="zmdi zmdi-lock-open"></i> <span>Lock Screen</span>
+                            </a>
+                            {% if app.user.userType == 1 and app.user.loginCompany != NULL %}
+                                <a href="{{ path('admin_switch_admin_access') }}" class="dropdown-item notify-item">
+                                    <i class="zmdi zmdi-power"></i> <span>Swich to Admin</span>
+                                </a>
+                            {% endif %}
+                            <!-- item-->
+                            <a href="{{ path('logout') }}" class="dropdown-item notify-item">
+                                <i class="zmdi zmdi-power"></i> <span>Logout</span>
+                            </a>
+
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div> <!-- end menu-extras -->
+            <div class="clearfix"></div>
+
+        </div> <!-- end container -->
+    </div>
+    <!-- end topbar-main -->
+
+
+    <div class="navbar-custom">
+        <div class="container">
+            <div id="navigation">
+                <!-- Navigation Menu-->
+                <ul class="navigation-menu">
+                    {% if app.user.userType == 1 and app.user.switchUser == NULL and app.user.loginCompany == NULL %}
+                        <li>
+                            <a href="{{ path('admin_dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{{ path('user_dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        </li>
+                    {% endif %}
+                    {% if app.user.userType == 1 and app.user.switchUser == NULL and app.user.loginCompany == NULL %}
+                        <li class="has-submenu">
+                            <a href="javascript:void(0);"><i class="zmdi zmdi-format-underlined"></i> <span> Users </span> </a>
+                            <ul class="submenu">
+                                <li>
+                                    <ul>
+                                        <li><a href="{{ path('admin_users') }}">User List</a></li>
+                                        {# <li><a href="#">Dropdowns</a></li>
+                                        <li><a href="#">Checkboxs-Radios</a></li>
+                                        <li><a href="#">Navs</a></li>
+                                        <li><a href="#">Progress</a></li>
+                                        <li><a href="#">Modals</a></li>
+                                        <li><a href="#">Alerts</a></li>
+                                        <li><a href="#">Bootstrap UI</a></li>
+                                        <li><a href="#">Typography</a></li> #}
+                                    </ul>
+                                </li>
+                                {# <li>
+                                    <ul>
+                                        <li><a href="#">Notification</a></li>
+                                        <li><a href="#">Carousel</a></li>
+                                        <li><a href="#">Grid</a></li>
+                                        <li><a href="#">Range sliders</a></li>
+                                        <li><a href="#">Sweet Alerts</a></li>
+                                        <li><a href="#">Ratings</a></li>
+                                        <li><a href="#">Treeview</a></li>
+                                        <li><a href="#">Tour</a></li>
+                                        <li><a href="#">Tile Box</a></li>
+                                        <li><a href="#">Chart Widgets</a></li>
+                                    </ul>
+                                </li> #}
+                            </ul>
+                        </li>
+                    {% endif %}
+                    {% if app.user.userType == 1 and app.user.switchUser == NULL and app.user.loginCompany == NULL %}
+                        <li class="has-submenu">
+                            <a href="javascript:void(0);"><i class="zmdi zmdi-format-underlined"></i> <span> Roles </span> </a>
+                            <ul class="submenu">
+                                <li>
+                                    <ul>
+                                        <li><a href="{{ path('admin_user_roles_companies') }}">User Roles Comapnies</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    {% if app.user.userType == 1 and app.user.switchUser == NULL and app.user.loginCompany == NULL %}
+                        <li class="has-submenu">
+                            <a href="javascript:void(0);"><i class="zmdi zmdi-format-underlined"></i> <span> Companies </span> </a>
+                            <ul class="submenu">
+                                <li>
+                                    <ul>
+                                        <li><a href="{{ path('admin_companies') }}">Company List</a></li>
+                                        <li><a href="{{ path('admin_company_modules') }}">Assigned Modules</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    {% if app.user.userType == 2 or (app.user.userType == 1 and app.user.switchUser != NULL and app.user.loginCompany != NULL) or (app.user.userType == 1 and app.user.switchUser == NULL and app.user.loginCompany != NULL) %}
+                        <li><a href="{{ path('user_company_settings') }}"><span>Company Settings</span> </a></li>
+                        {{ render(controller('BackendBundle:main:dynamicUserMenu')) }}
+                    {% endif %}
+                    {% if app.user.userType == 2 %}
+                        {% if app.user.loginCompany != NULL and app.user.usersCompanies|length > 1 %}    
+                            <li><a href="{{ path('user_switch_access') }}"><span>Switch Company Access</span> </a></li>
+                        {% endif %}
+                    {% else %}
+                        {% if app.user.loginCompany != NULL %}
+                            {% if app.user.switchUser != NULL and app.user.switchUser.usersCompanies|length > 1 %}
+                                <li><a href="{{ path('user_switch_access') }}"><span>Switch Company Access</span> </a></li>
+                            {% else %}
+                                {% if app.user.usersCompanies|length > 1 %}    
+                                    <li><a href="{{ path('user_switch_access') }}"><span>Switch Company Access</span> </a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {% if app.user.usersCompanies|length > 0 %}    
+                                <li><a href="{{ path('user_switch_access') }}"><span>Switch Company Access</span> </a></li>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}  
+
+                    {# <li class="has-submenu">
+                        <a href="#"><i class="zmdi zmdi-album"></i> <span> Icons </span> </a>
+                        <ul class="submenu">
+                            <li><a href="#">Material Design</a></li>
+                            <li><a href="#">Ion Icons</a></li>
+                            <li><a href="#">Font awesome</a></li>
+                            <li><a href="#">Themify Icons</a></li>
+                            <li><a href="#">Simple line Icons</a></li>
+                            <li><a href="#">Weather Icons</a></li>
+                            <li><a href="#">PE7 Icons</a></li>
+                            <li><a href="#">Typicons</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="#"><i class="zmdi zmdi-collection-text"></i><span> Forms </span> </a>
+                        <ul class="submenu">
+                            <li><a href="#">General Elements</a></li>
+                            <li><a href="#">Advanced Form</a></li>
+                            <li><a href="#">Form Validation</a></li>
+                            <li><a href="#">Form Pickers</a></li>
+                            <li><a href="#">Form Wizard</a></li>
+                            <li><a href="#">Form Masks</a></li>
+                            <li><a href="#">Multiple File Upload</a></li>
+                            <li><a href="#">X-editable</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="#"><i class="zmdi zmdi-format-list-bulleted"></i> <span> Tables </span> </a>
+                        <ul class="submenu">
+                            <li><a href="#">Basic Tables</a></li>
+                            <li><a href="#">Data Table</a></li>
+                            <li><a href="#">Responsive Table</a></li>
+                            <li><a href="#">Tablesaw</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="#"><i class="zmdi zmdi-chart"></i><span> Charts </span> </a>
+                        <ul class="submenu">
+                            <li><a href="#">Flot Chart</a></li>
+                            <li><a href="#">Morris Chart</a></li>
+                            <li><a href="#">Chartjs</a></li>
+                            <li><a href="#">Peity Charts</a></li>
+                            <li><a href="#">Chartist Charts</a></li>
+                            <li><a href="#">C3 Charts</a></li>
+                            <li><a href="#">Sparkline charts</a></li>
+                            <li><a href="#">Jquery Knob</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="#"><i class="zmdi zmdi-collection-item"></i> <span> Pages </span> </a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li><a href="#">Calendar</a></li>
+                                    <li><a href="#">Starter Page</a></li>
+                                    <li><a href="{{ path('admin_login') }}">Login</a></li>
+                                    <li><a href="#">Register</a></li>
+                                    <li><a href="#">Recover Password</a></li>
+                                    <li><a href="#">Lock Screen</a></li>
+                                    <li><a href="#">Error 404</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul>
+                                    <li><a href="#">Error 500</a></li>
+                                    <li><a href="#">Timeline</a></li>
+                                    <li><a href="#">Invoice</a></li>
+                                    <li><a href="#">Pricing</a></li>
+                                    <li><a href="#">Gallery</a></li>
+                                    <li><a href="#">Maintenance</a></li>
+                                    <li><a href="#">Coming Soon</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li> #}
+
+                </ul>
+                <!-- End navigation menu  -->
+            </div>
+        </div>
+    </div>
+</header>

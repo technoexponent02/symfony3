@@ -1,0 +1,115 @@
+{% extends 'backend/layouts/loginLayout.html.twig' %}
+ 
+{% block title %}Login{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+{% block body %}
+<div class="account-bg">
+    <div class="card-box m-b-0">
+        <div class="text-xs-center m-t-20">
+            <a href="{{ path('admin_dashboard') }}" class="logo">
+                <i class="zmdi zmdi-group-work icon-c-logo"></i>
+                <span>Portalen</span>
+            </a>
+        </div>
+        <div class="m-t-10 p-20">
+            <div class="row">
+                <div class="col-xs-12 text-xs-center">
+                    <h6 class="text-muted text-uppercase m-b-0 m-t-0">Sign In</h6>
+                    {% if error %}
+                        <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    {% for flash_message in app.session.flashBag.get('info') %}
+                        <div class="alert alert-warning">
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+                    {% if login_error != '' %}
+                        <div class="alert alert-danger" role="alert">{{ login_error }}</div>
+                    {% endif %}
+                    {% for flash_message in app.session.flashBag.get('success_reset_pass') %}
+                        <div class="alert alert-success">
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <form class="m-t-20" action="{{ path('admin_login_check') }}" method="post">
+                <div class="form-group row">
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Username" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-xs-12">
+                        <input class="form-control" type="password" id="password" name="_password" placeholder="Password" required>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group row">
+                    <div class="col-xs-12">
+                        <div class="checkbox checkbox-custom">
+                            <input id="checkbox-signup" type="checkbox">
+                            <label for="checkbox-signup">
+                                Remember me
+                            </label>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="form-group row">
+                    <div class="col-xs-12">
+                        <a href="{{ path('admin_forgot_password') }}" style="cursor: pointer;">Forgot password?</a>
+                    </div>
+                </div>
+
+                <div class="form-group text-center row m-t-10">
+                    <div class="col-xs-12">
+                        <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Log In</button>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group row m-t-30 m-b-0">
+                    <div class="col-sm-12">
+                        <a href="pages-recoverpw.html" class="text-muted"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
+                    </div>
+                </div> -->
+
+                <!-- <div class="form-group row m-t-30 m-b-0">
+                    <div class="col-sm-12 text-xs-center">
+                        <h5 class="text-muted"><b>Sign in with</b></h5>
+                    </div>
+                </div>
+
+                <div class="form-group row m-b-0 text-xs-center">
+                    <div class="col-sm-12">
+                        <button type="button" class="btn btn-facebook waves-effect waves-light m-t-20">
+                           <i class="fa fa-facebook m-r-5"></i> Facebook
+                        </button>
+
+                        <button type="button" class="btn btn-twitter waves-effect waves-light m-t-20">
+                           <i class="fa fa-twitter m-r-5"></i> Twitter
+                        </button>
+
+                        <button type="button" class="btn btn-googleplus waves-effect waves-light m-t-20">
+                           <i class="fa fa-google-plus m-r-5"></i> Google+
+                        </button>
+                    </div>
+                </div> -->
+            </form>
+
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- end card-box-->
+
+<div class="m-t-20">
+    <div class="text-xs-center">
+        <p class="text-white">Don't have an account? <a href="javascript:void(0){# pages-register.html #}" class="text-white m-l-5"><b>Sign Up</b></a></p>
+    </div>
+</div>
+{% endblock %}
+{% block customscripts %}{% endblock %}

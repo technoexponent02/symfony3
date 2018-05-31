@@ -1,0 +1,191 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: static_data.yml }
+    - { resource: "@PortalenCustomerBundle/Resources/config/services.yml" }
+    - { resource: "@PortalenInvoiceBundle/Resources/config/services.yml" }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+    database_version: '1.3'
+
+framework:
+    #esi: ~
+    #translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.root_dir%/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    serializer: 
+        enable_annotations: true 
+        name_converter: 'serializer.name_converter.camel_case_to_snake_case'
+    templating:
+        engines: ['twig']
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    trusted_proxies: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    cache:  false
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver: pdo_mysql
+                host: '%database_host%'
+                port: '%database_port%'
+                dbname: '%database_name%'
+                user: '%database_user%'
+                password: '%database_password%'
+                charset: UTF8
+                # if using pdo_sqlite as your database driver:
+                #   1. add the path in parameters.yml
+                #     e.g. database_path: "%kernel.root_dir%/../var/data/data.sqlite"
+                #   2. Uncomment database_path in parameters.yml.dist
+                #   3. Uncomment next line:
+                #path: '%database_path%'
+            company:
+                driver: pdo_mysql
+                host: '%database_host%'
+                port: '%database_port%'
+                dbname: '%database_name%'
+                user: '%database_user%'
+                password: '%database_password%'
+                charset: UTF8
+                wrapper_class: 'BackendBundle\Connection\ConnectionWrapper'
+    orm:
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    AppBundle: ~
+                    BackendBundle: ~
+                    ApiBundle: ~
+            company:
+                connection: company
+                mappings:
+                    CompanyBundle: ~
+                    PortalenCustomerBundle: ~
+                    PortalenInvoiceBundle: ~
+                    ApiBundle: ~
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: '%mailer_transport%'
+    host: '%mailer_host%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    port: '%mailer_port%'
+    spool: { type: memory }
+
+#mandrill configuration
+# hip_mandrill:
+#     api_key: '%mandrill_api_key%'
+#     disable_delivery: false # useful for dev/test environment. Default value is 'false'
+#     # debug: passed to \Mandrill causing it to output curl requests. Useful to see output
+#     # from CLI script. Default value is 'false'
+#     debug: true
+#     default:
+#         sender: '%mandrill_default_sender%'
+#         sender_name: '%mandrill_default_sender_name%' # Optionally define a sender name (from name)
+#         subaccount: '%mandrill_default_subaccount%' # Optionally define a subaccount to use
+#     proxy:
+#         use: true # when you are behind a proxy. Default value is 'false'
+#         host: '%mandrill_proxy_host%'
+#         port: '%mandrill_proxy_port%'
+#         user: '%mandrill_proxy_user%'
+#         password: '%mandrill_proxy_password%'
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener:
+        rules:
+            - { path: '^/api', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
+            - { path: '^/', stop: true } # Available for version >= 1.5
+    view:
+        view_response_listener: 'force'
+        formats:
+            json: true
+            xml: true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+        empty_content: 204
+
+nelmio_api_doc: ~
+# nelmio_api_doc:
+#     name:                 'API documentation'
+#     exclude_sections:     []
+#     default_sections_opened:  true
+#     motd:
+#         template:             'NelmioApiDocBundle::Components/motd.html.twig'
+#     request_listener:
+#         enabled:              true
+#         parameter:            _doc
+#     sandbox:
+#         enabled:              true
+#         endpoint:             null
+#         accept_type:          null
+#         body_format:
+#             formats:
+
+#                 # Defaults:
+#                 - form
+#                 - json
+#             default_format:       "json"
+#         request_format:
+#             formats:
+
+#                 # Defaults:
+#                 json:                application/json
+#                 xml:                 application/xml
+#             method:               "format_param"
+#             default_format:       json
+#         authentication:
+#             delivery: header
+#             name:     X-Custom
+
+#             # Required if http delivery is selected.
+#             type:                 "basic"
+#             custom_endpoint:      false
+#         entity_to_choice:         true
+#     swagger:
+#         api_base_path:        /api
+#         swagger_version:      '1.2'
+#         api_version:          '0.1'
+#         info:
+#             title:                Symfony2
+#             description:          'My awesome Symfony2 app!'
+#             TermsOfServiceUrl:    null
+#             contact:              null
+#             license:              null
+#             licenseUrl:           null
+#     cache:
+#         enabled:              false
+#         file:                 '%kernel.cache_dir%/api-doc.cache'

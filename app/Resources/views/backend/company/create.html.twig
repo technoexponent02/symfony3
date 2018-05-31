@@ -1,0 +1,220 @@
+{% extends 'backend/layouts/base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block stylesheets %}
+    <style type="text/css">
+    label.required:after {
+        content: ' *';
+        color:#ff5d48;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title">Company Create</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="card-box">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 col-md-12">
+                    <h4 class="header-title m-t-0">Create Company Form</h4>
+
+                    {% for flash_message in app.session.flashBag.get('success') %}
+                        <div class="alert alert-success">
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+                    
+                    {% if not form.vars.valid %}
+                        <div class="alert alert-danger" role="alert">
+                            {# Loop through every form item #}
+                            {% for child in form.children %}
+                                {# Display the errors of the form item #}
+                                {%for error in child.vars.errors%}
+                                    <li>{{error.message}}</li>
+                                {%endfor%}
+                            {%endfor%}
+                        </div>
+                    {% endif %}
+                    {# <p class="text-muted font-13 m-b-10">
+                        Parsley is a javascript form validation library. It helps you provide your users with feedback on their form submission before sending it to your server.
+                    </p> #}
+                    <div class="p-20">
+                        {{ form_start(form, { 'attr': {'data-parsley-validate': '', 'novalidate': ''}}) }}
+
+                            <div class="form-group row">
+                                {{ form_label(form.locationType, 'Database Location', {
+                                        'label_attr': {'class': 'col-sm-4 form-control-label'}
+                                }) }}
+                                <div class="col-sm-4">
+                                    {{ form_widget(form.locationType, {'attr': {'class': 'form-control' }}) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group row" id="dbType_area">
+                                {{ form_label(form.dbType, 'Company Database Type', {
+                                        'label_attr': {'class': 'col-sm-4 form-control-label'}
+                                }) }}
+                                <div class="col-sm-4">
+                                    {{ form_widget(form.dbType, {'attr': {'class': 'form-control' }}) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                {{ form_label(form.companyName, 'Company Name', {
+                                        'label_attr': {'class': 'col-sm-4 form-control-label'}
+                                }) }}
+                                <div class="col-sm-4">
+                                    {{ form_widget(form.companyName, {'attr': {'class': 'form-control', 'placeholder': 'Company Name' }}) }}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                {{ form_label(form.connectionName, 'Connection Name(Unique)', {
+                                        'label_attr': {'class': 'col-sm-4 form-control-label'}
+                                }) }}
+                                <div class="col-sm-4">
+                                    {{ form_widget(form.connectionName, {'attr': {'class': 'form-control', 'placeholder': 'Connection Name' }}) }}
+                                </div>
+                            </div>
+                            <div id="existing_db_cred_section" style="display:none;">
+                                <div class="form-group row">
+                                    {{ form_label(form.existingDbs, 'Existing Company DBs', {
+                                            'label_attr': {'class': 'col-sm-4 form-control-label'}
+                                    }) }}
+                                    <div class="col-sm-4">
+                                        {{ form_widget(form.existingDbs, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="new_db_cred_section">
+
+                                <div class="form-group row">
+                                    {{ form_label(form.companyDbName, 'Company DB Name(Unique)', {
+                                            'label_attr': {'class': 'col-sm-4 form-control-label'}
+                                    }) }}
+                                    <div class="col-sm-4">
+                                        {{ form_widget(form.companyDbName, {'attr': {'class': 'form-control', 'placeholder': 'Company Database Name' }}) }}
+                                    </div>
+                                </div>
+                                <div id="for_external_db_area" style="display:none;">
+                                    <div class="form-group row">
+                                        {{ form_label(form.companyDbHost, 'Company DB Host(Default:127.0.0.1)', {
+                                                'label_attr': {'class': 'col-sm-4 form-control-label'}
+                                        }) }}
+                                        <div class="col-sm-4">
+                                            {{ form_widget(form.companyDbHost, {'attr': {'class': 'form-control', 'placeholder': 'Company Database Host Name' }}) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        {{ form_label(form.companyDbUser, 'Company DB User(Mysql User)', {
+                                                'label_attr': {'class': 'col-sm-4 form-control-label'}
+                                        }) }}
+                                        <div class="col-sm-4">
+                                            {{ form_widget(form.companyDbUser, {'attr': {'class': 'form-control', 'placeholder': 'Mysql User' }}) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        {{ form_label(form.companyDbPassword, 'Company DB Password(Mysql User Password)', {
+                                                'label_attr': {'class': 'col-sm-4 form-control-label'}
+                                        }) }}
+                                        <div class="col-sm-4">
+                                            {{ form_widget(form.companyDbPassword, {'attr': {'class': 'form-control', 'placeholder': 'Mysql User Password' }}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-8 col-sm-offset-4">
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                        Create
+                                    </button>
+                                    <a class="btn btn-secondary waves-effect m-l-5" href="{{ path('admin_companies') }}">Cancel</a>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block customscripts %}
+    <script type="text/javascript" src="{{ asset('backend_assets/plugins/parsleyjs/parsley.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('form').parsley();
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).on('change', '#company_form_dbType', function(){
+            var dbType = $(this).val();
+            if(dbType == 1)
+            {
+                $('#company_form_existingDbs').attr('required', false);
+                $('#existing_db_cred_section').hide();
+                $('#new_db_cred_section').show();
+            }
+            else
+            {
+                $('#company_form_companyDbName').val($('#company_form_existingDbs').val());
+                $('#company_form_existingDbs').attr('required', true);
+                $('#existing_db_cred_section').show();
+                $('#new_db_cred_section').hide();
+            }
+        });
+        $(document).on('change', '#company_form_existingDbs', function(){
+            $('#company_form_companyDbName').val($(this).val());
+        });
+
+        $(document).ready(function(){
+            var locationType = $('#company_form_locationType').val();
+            if(locationType == 1)
+            {
+                $('#for_external_db_area').hide();
+                $('#dbType_area').show();
+                $('#company_form_dbType').val($('#company_form_dbType').val()).trigger('change');
+            }
+            else
+            {
+                $('#for_external_db_area').show();
+                $('#dbType_area').hide();
+                $('#company_form_dbType').val('1').trigger('change');
+            }
+        });
+
+        $(document).on('change', '#company_form_locationType', function(){
+            var locationType = $(this).val();
+            $('#company_form_dbType').val('1').trigger('change');
+            if(locationType == 1)
+            {
+                $('#for_external_db_area').hide();
+                $('#dbType_area').show();
+                $('#company_form_companyDbHost').removeAttr('required');
+                $('#company_form_companyDbHost').parent().parent('.form-group').children('label').removeClass('required');
+                $('#company_form_companyDbUser').removeAttr('required');
+                $('#company_form_companyDbUser').parent().parent('.form-group').children('label').removeClass('required');
+
+            }
+            else
+            {
+                $('#for_external_db_area').show();
+                $('#dbType_area').hide();
+                $('#company_form_companyDbHost').attr('required', true);
+                $('#company_form_companyDbHost').parent().parent('.form-group').children('label').addClass('required');
+                $('#company_form_companyDbUser').attr('required', true);
+                $('#company_form_companyDbUser').parent().parent('.form-group').children('label').addClass('required');
+
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,28 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+    #service_name:
+    #    class: AppBundle\Directory\ClassName
+    #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+    backend.form_login_authenticator:
+        class: BackendBundle\Security\FormLoginAuthenticator
+        arguments: ["@router", "@security.password_encoder", "@doctrine.orm.entity_manager", "@session", "@service_container"]
+
+    backend.logout_listener:
+        class:  BackendBundle\Security\LogoutListener
+        arguments:  ["@security.token_storage", "@doctrine.orm.entity_manager", "@router", "@session"]
+
+    backend.handler.session_idle:
+        class: BackendBundle\Handler\SessionIdleHandler
+        arguments: ["@session", "@security.token_storage", "@router","@service_container", '%session_max_idle_time%']
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    backend.service.db_schema_update:
+        class: BackendBundle\Service\DatabaseSchemaUpdateListner
+        arguments: ["@service_container", "@doctrine.orm.entity_manager", "@doctrine.orm.company_entity_manager", '%database_version%']
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

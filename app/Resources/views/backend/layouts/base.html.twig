@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Portalen">
+        <meta name="author" content="Technoexponent">
+
+        <!-- App Favicon -->
+        <!-- <link rel="shortcut icon" href="assets/images/favicon.ico"> -->
+
+        <!-- App title -->
+        <title>Portalen | {% block title %}{% endblock %}</title>
+
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="{{ asset('backend_assets/plugins/morris/morris.css') }}">
+
+        <!-- Switchery css -->
+        <link href="{{ asset('backend_assets/plugins/switchery/switchery.min.css') }}" rel="stylesheet" />
+
+        <!-- App CSS -->
+        <link href="{{ asset('backend_assets/css/style.css') }}" rel="stylesheet" type="text/css" />
+
+
+        <!-- All plugins -->
+        <link href="{{ asset('backend_assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('backend_assets/plugins/bootstrap-sweetalert/sweet-alert.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('backend_assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+
+
+        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+        <!-- Modernizr js -->
+        {% block stylesheets %}{% endblock %}
+        <script src="{{ asset('backend_assets/js/modernizr.min.js') }}"></script>
+    </head>
+    <body>
+
+        <!-- Navigation Bar-->
+        {{ include('backend/includes/header.html.twig') }}
+        <!-- End Navigation Bar-->
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="wrapper">
+            <div class="container">
+
+                {% block body %}{% endblock %}
+                    <!-- end row -->
+                <!-- Footer -->
+                {{ include('backend/includes/footer.html.twig') }}
+                <!-- End Footer -->
+
+
+            </div> <!-- container -->
+
+            <!-- Right Sidebar -->
+            {{ include('backend/includes/rightSidebar.html.twig') }}
+            <!-- /Right-bar -->
+        </div> <!-- End wrapper -->
+
+        <script>
+            var resizefunc = [];
+        </script>
+
+        <!-- jQuery  -->
+        <script src="{{ asset('backend_assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('common/js/polyfills.js') }}"></script>
+        <script src="{{ asset('common/js/custom.js') }}"></script>
+        <script src="{{ asset('backend_assets/js/tether.min.js') }}"></script>
+        <script src="{{ asset('backend_assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('backend_assets/js/waves.js') }}"></script>
+        <script src="{{ asset('backend_assets/js/jquery.nicescroll.js') }}"></script>
+        <script src="{{ asset('backend_assets/plugins/switchery/switchery.min.js') }}"></script>
+
+        <!--Morris Chart-->
+        <script src="{{ asset('backend_assets/plugins/morris/morris.min.js') }}"></script>
+        <script src="{{ asset('backend_assets/plugins/raphael/raphael-min.js') }}"></script>
+
+        <!-- Counter Up  -->
+        <script src="{{ asset('backend_assets/plugins/waypoints/lib/jquery.waypoints.js') }}"></script>
+        <script src="{{ asset('backend_assets/plugins/counterup/jquery.counterup.min.js') }}"></script>
+
+        <!-- All plugins -->
+        <script src="{{ asset('backend_assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+        <script src="{{ asset('backend_assets/plugins/bootstrap-sweetalert/sweet-alert.min.js') }}"></script>
+        <script src="{{ asset('backend_assets/plugins/select2/js/select2.full.min.js') }}"></script>
+
+        <!-- App js -->
+        <script src="{{ asset('backend_assets/js/jquery.core.js') }}"></script>
+        <script src="{{ asset('backend_assets/js/jquery.app.js') }}"></script>
+
+        <!-- Page specific js -->
+        {% block customscripts %}{% endblock %}
+    </body>
+</html>
+

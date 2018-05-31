@@ -1,0 +1,46 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+lucky-number:
+    path:      /lucky/number
+    defaults:  { _controller: AppBundle:Lucky:number }
+
+
+
+
+
+
+
+admin:
+    path:      /admin
+    defaults:  { _controller: BackendBundle:Default:index }
+
+admin_login:
+    path:      /admin/login
+    defaults:  { _controller: BackendBundle:Security:login }
+
+admin_login_check:
+    path: /admin/login_check
+    defaults:  { _controller: BackendBundle:Security:login_check }
+
+logout:
+    path:      /logout
+    defaults:  { _controller: BackendBundle:Security:logout }
+
+admin_register:
+    path:      /admin/register
+    defaults:  { _controller: BackendBundle:Default:register }
+
+admin_users:
+    path:      /admin/user
+    defaults:  { _controller: BackendBundle:User:index }
+admin_user_create:
+    path:      /admin/user/create
+    defaults:  { _controller: BackendBundle:User:create }
+admin_user_edit:
+    path:      /admin/user/edit/{id}
+    defaults:  { _controller: BackendBundle:User:edit }
+
+
+

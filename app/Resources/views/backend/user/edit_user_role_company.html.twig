@@ -1,0 +1,136 @@
+{% extends 'backend/layouts/base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block stylesheets %}
+    <style type="text/css">
+    label.required:after {
+        content: ' *';
+        color:#ff5d48;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title">Edit user role company</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="card-box">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 col-md-12">
+                    <h4 class="header-title m-t-0">Edit user role company Form</h4>
+
+                    {% for flash_message in app.session.flashBag.get('success') %}
+                        <div class="alert alert-success">
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+
+                    {% for flash_message in app.session.flashBag.get('error') %}
+                        <div class="alert alert-danger">
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+                    
+                    {% if not form.vars.valid %}
+                        <div class="alert alert-danger" role="alert">
+                            {# Loop through every form item #}
+                            {% for child in form.children %}
+                                {# Display the errors of the form item #}
+                                {%for error in child.vars.errors%}
+                                    <li>{{error.message}}</li>
+                                {%endfor%}
+                            {%endfor%}
+                        </div>
+                    {% endif %}
+                    {# <p class="text-muted font-13 m-b-10">
+                        Parsley is a javascript form validation library. It helps you provide your users with feedback on their form submission before sending it to your server.
+                    </p> #}
+                    <div class="p-20">
+                        {{ form_start(form, { 'attr': {'data-parsley-validate': '', 'novalidate': ''}}) }}
+                            <div class="form-group row">
+                                {{ form_label(form.user, 'User', {
+                                        'label_attr': {'class': 'col-sm-4 form-control-label'}
+                                }) }}
+                                <div class="col-sm-4">
+                                    {{ form_widget(form.user, {'attr': {'class': 'form-control' }}) }}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                {{ form_label(form.company, 'Company', {
+                                        'label_attr': {'class': 'col-sm-4 form-control-label'}
+                                }) }}
+                                <div class="col-sm-4">
+                                    {{ form_widget(form.company, {'attr': {'class': 'form-control' }}) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-4 form-control-label required" for="modules_ids">Modules</label>
+                                <div class="col-sm-4">
+                                    <select id="modules_ids" name="modules_ids[]" required="required" class="form-control" multiple="multiple" data-parsley-multiple="modules_ids[]" data-parsley-id="8">
+                                        {% for module in company_modules %}
+                                            <option value="{{ module.id }}" {{ module.id in selected_userCompany_module_ids ? 'selected' : '' }}>{{ module.moduleName }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            {% if permissions|length > 0 %}
+                            <div class="form-group row" id="permission_block">
+                                <label class="col-sm-4 form-control-label required" for="user_company_form_modules">Permissions</label>
+                                <div class="col-sm-4">
+                                    <select id="permissions" name="permissions[]" required="required" class="form-control" multiple="multiple">
+                                        {% for permission in permissions %}
+                                            <option value="{{ permission.id }}" {{ permission.id in selected_permissions_ids ? 'selected' : '' }}>{{ permission.permissionName }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <div class="form-group row">
+                                <div class="col-sm-8 col-sm-offset-4">
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                        Update
+                                    </button>
+                                    <a class="btn btn-secondary waves-effect m-l-5" href="{{ path('admin_user_roles_companies') }}">Cancel</a>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block customscripts %}
+    <script type="text/javascript" src="{{ asset('backend_assets/plugins/parsleyjs/parsley.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('form').parsley();
+        });
+    </script>
+    <script type="text/javascript">
+    $(document).on('change', '#user_company_form_company', function(){
+        var company_id = $(this).val();
+        var user_id = $('#user_company_form_user').val();
+        $.ajax({
+            url: "{{ path('admin_user_company_permission_list') }}",
+            type: 'post',
+            data: {company_id:company_id, user_id:user_id},
+            dataType: 'json',
+            success: function(response){
+                $('#permission_block').html(response.permission_list_html);
+                $('#modules_ids').html(response.module_list_html);
+            }
+        });
+    });
+    </script>
+{% endblock %}

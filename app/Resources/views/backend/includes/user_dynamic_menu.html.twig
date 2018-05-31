@@ -1,0 +1,54 @@
+{% if modules|length > 0 %}
+	{% for module in modules %}
+		{% if module.id == 1 %} {# for sub-account module #}
+			<li class="has-submenu">
+            	<a href="javascript:void(0);"><span> {{ module.moduleName }} </span> </a>
+				<ul class="submenu">
+				    <li>
+				        <ul>
+				            <li><a href="{{  module.moduleUrlPath == '#' ? '#' : path('user_subaccount') }}">List</a></li>
+				            <li><a href="{{ path('user_subaccount_create') }}">Create New</a></li>
+				        </ul>
+				    </li>
+				</ul>
+			 </li>
+		{% endif %}
+
+		{% if module.id == 2 %}{# for Customer module #}
+			<li class="has-submenu">
+            	<a href="javascript:void(0);"><span> {{ module.moduleName }} </span> </a>
+				<ul class="submenu">
+				    <li>
+				        <ul>
+				            <li><a href="{{  module.moduleUrlPath == '#' ? '#' : path('company_customer') }}">List</a></li>
+				            <li><a href="{{ path('company_customer_create') }}">Create New</a></li>
+				        </ul>
+				    </li>
+				</ul>
+			 </li>
+		{% endif %}
+
+		{% if module.id == 3 %}{# for Invoice module #}
+			<li class="has-submenu">
+            	<a href="javascript:void(0);"><span> {{ module.moduleName }} </span> </a>
+				<ul class="submenu">
+				    <li>
+				        <ul>
+				            <li><a href="{{  module.moduleUrlPath == '#' ? '#' : path('company_invoice') }}">Dashboard</a></li>
+				            {#<li><a href="{{ path('company_invoice_create') }}">Create Invoice</a></li>#}
+				            <li><a href="{{ path('company_invoice_list') }}">Invoice List</a></li>
+				            <li><a href="{{ path('company_order_list') }}">Order List</a></li>
+				            <li><a href="#">Quote List</a></li>
+				            <li><a href="{{ path('company_invoice_setting') }}">Invoice Settings</a></li>
+				            <li><a href="{{ path('company_invoice_payment_terms') }}">Invoice Payment Terms</a></li>
+				            <li><a href="{{ path('company_invoice_delivery_conditions') }}">Invoice Delivery Conditions</a></li>
+				            <li><a href="{{ path('company_invoice_delivery_methods') }}">Invoice Delivery Methods</a></li>
+
+				        </ul>
+				    </li>
+				</ul>
+			 </li>
+		{% endif %}
+
+	{% endfor %}
+{% endif %}

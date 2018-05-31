@@ -1,0 +1,156 @@
+parameters:
+  existing_dbs:
+    - symfony_portalen_company1
+    - symfony_portalen_company2
+  modules:
+    sub_account:
+      id: 1
+      name: Sub Account
+      url_path: user_subaccount
+    customer:
+      id: 2
+      name: Customer
+      url_path: company_customer
+    invoice:
+      id: 3
+      name: Invoice
+      url_path: company_invoice
+
+  permissions:
+    permission1:
+      id: 1
+      name: permission 1
+    permission2:
+      id: 2
+      name: permission 2
+    permission3:
+      id: 3
+      name: Add additional field
+
+  forms:
+    form1:
+      name: customer add/edit
+      module_id: 2
+    form2:
+      name: customer address add/edit
+      module_id: 2
+    form3:
+      name: customer contact add/edit
+      module_id: 2
+
+  customer_address_type:
+    1:
+      name: Billing Address
+      value: BA
+    2:
+      name: Shipping Address
+      value: SA
+
+
+  settings:
+      1:
+        key_name: invoice.email
+        show_name: Email Address
+        belongs_to: invoice
+        field_type: email
+      2:
+        key_name: invoice.website
+        show_name: Website
+        belongs_to: invoice
+        field_type: text
+      3:
+        key_name: invoice.bankAccount
+        show_name: Bank Account
+        belongs_to: invoice
+        field_type: text
+      4:
+        key_name: invoice.address1
+        show_name: Address 1
+        belongs_to: invoice
+        field_type: text
+      5:
+        key_name: invoice.address2
+        show_name: Address 2
+        belongs_to: invoice
+        field_type: text
+      6:
+        key_name: invoice.city
+        show_name: City
+        belongs_to: invoice
+        field_type: text
+      7:
+        key_name: invoice.country
+        show_name: Country
+        belongs_to: invoice
+        field_type: text
+      8:
+        key_name: invoice.telephone
+        show_name: Telephone
+        belongs_to: invoice
+        field_type: text
+      9:
+        key_name: invoice.organizationNumber
+        show_name: Organization Number
+        belongs_to: invoice
+        field_type: text
+      10:
+        key_name: invoice.vatNumber
+        show_name: Vat Number
+        belongs_to: invoice
+        field_type: text
+      11:
+        key_name: invoice.pc
+        show_name: pc
+        belongs_to: unit
+        field_type: text
+      12:
+        key_name: invoice.hrs
+        show_name: hrs
+        belongs_to: unit
+        field_type: text
+      13:
+        key_name: invoice.kg
+        show_name: kg
+        belongs_to: unit
+        field_type: text
+      14:
+        key_name: invoice.ft
+        show_name: ft
+        belongs_to: unit
+        field_type: text
+      15:
+        key_name: invoice.d
+        show_name: d
+        belongs_to: unit
+        field_type: text
+      16:
+        key_name: invoice.m
+        show_name: m
+        belongs_to: unit
+        field_type: text
+      17:
+        key_name: invoice.y
+        show_name: y
+        belongs_to: unit
+        field_type: text
+      18:
+        key_name: invoice.starting_no
+        show_name: Starting number
+        belongs_to: invoice
+        field_type: number
+        value: 1
+      19:
+        key_name: invoice.logo
+        show_name: Logo
+        belongs_to: invoice
+        field_type: file
+      20:
+        key_name: invoice.default_currency
+        show_name: Default Currency
+        belongs_to: invoice
+        field_type: currency
+      21:
+        key_name: customer.starting_series
+        show_name: Customer No Starting Series
+        belongs_to: customer
+        field_type: text

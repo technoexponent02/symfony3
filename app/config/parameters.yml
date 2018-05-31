@@ -1,0 +1,23 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: symfony_portalen
+    database_user: root
+    database_password: null
+    mailer_host: smtp.mandrillapp.com
+    mailer_user: 'Freppa AB'
+    mailer_password: oM60N6ddNM6KnoO_2aIXmg
+    mailer_port: 587
+    mailer_transport: smtp
+    secret: projectportalen
+    session_max_idle_time: 3600
+    mandrill_api_key: oM60N6ddNM6KnoO_2aIXmg
+    mandrill_default_sender: test@technoexponent.com
+    mandrill_default_sender_name: test
+    mandrill_default_subaccount: Project
+    mandrill_proxy_host: smtp.mandrillapp.com
+    mandrill_proxy_port: 587
+    mandrill_proxy_user: 'Freppa AB'
+    mandrill_proxy_password: oM60N6ddNM6KnoO_2aIXmg
+    invoice_directory: '%kernel.root_dir%/../web/uploads/invoice'

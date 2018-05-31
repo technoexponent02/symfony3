@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Portalen">
+        <meta name="author" content="Technoexponent">
+
+        <!-- <link rel="shortcut icon" href="images/favicon.ico"> -->
+
+        <title>Portalen | {% block title %}{% endblock %}</title>
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Sriracha" rel="stylesheet">
+
+        <!-- Bootstrap core CSS -->
+        <link href="{{ asset('app_assets/css/bootstrap.min.css') }}" rel="stylesheet">
+
+        <!-- Owl Carousel CSS -->
+        <link href="{{ asset('app_assets/css/owl.carousel.css') }}" rel="stylesheet">
+        <link href="{{ asset('app_assets/css/owl.theme.default.min.css') }}" rel="stylesheet">
+
+        <!-- Icon CSS -->
+        <link href="{{ asset('app_assets/css/ionicons.min.css') }}" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('app_assets/css/style.css') }}" rel="stylesheet">
+
+        {% block stylesheets %}{% endblock %}
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+        <!--[if lt IE 9]>
+          <script src="js/html5shiv.js"></script>
+          <script src="js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body data-spy="scroll" data-target="#navbar-menu">
+        <!-- Navbar -->
+        {{ include('app/includes/header.html.twig') }}
+        <!-- End navbar-custom -->
+
+        {% block body %}{% endblock %}
+
+        <!-- FOOTER -->
+        {{ include('app/includes/footer.html.twig') }}
+        <!-- End Footer -->
+        
+
+        <!-- Back to top -->    
+        <a href="#" class="back-to-top" id="back-to-top"> <i class="ion-chevron-up"></i> </a>
+
+
+        <!-- js placed at the end of the document so the pages load faster -->
+        <script src="{{ asset('app_assets/js/jquery-2.1.4.min.js') }}"></script>
+        <script src="{{ asset('app_assets/js/bootstrap.min.js') }}"></script>
+
+        <!-- Jquery easing -->                                                      
+        <script type="text/javascript" src="{{ asset('app_assets/js/jquery.easing.1.3.min.js') }}"></script>
+
+        <!-- Owl Carousel -->                                                      
+        <script type="text/javascript" src="{{ asset('app_assets/js/owl.carousel.min.js') }}"></script>
+
+        <!--sticky header-->
+        <script type="text/javascript" src="{{ asset('app_assets/js/jquery.sticky.js') }}"></script>
+
+        <!--common script for all pages-->
+        <script src="{{ asset('app_assets/js/jquery.app.js') }}"></script>
+
+        <script type="text/javascript">
+            $('.owl-carousel').owlCarousel({
+                loop:true,
+                margin:10,
+                nav:false,
+                autoplay: true,
+                autoplayTimeout: 4000,
+                responsive:{
+                    0:{
+                        items:1
+                    }
+                }
+            })
+        </script>
+        {% block customscripts %}{% endblock %}
+    </body>
+</html>
